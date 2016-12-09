@@ -66,7 +66,9 @@ const config = {
         new webpack.DefinePlugin({
             'process.env':{
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-            }
+            },
+            __LOCAL__: false,                                  // 本地环境
+            __PRO__:   true   
         }),
         new CleanWebpackPlugin(['dist'], {
             "root": __dirname,

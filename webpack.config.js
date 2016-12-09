@@ -47,7 +47,11 @@ const config = {
     plugins: [
         new DashboardPlugin(dashboard.setData),             //控制台日志
         new webpack.HotModuleReplacementPlugin(),           //热加载插件
-        new webpack.NoErrorsPlugin()                        //允许错误不打断程序
+        new webpack.NoErrorsPlugin(),                       //允许错误不打断程序
+        new webpack.DefinePlugin({
+          __LOCAL__: true,                                  // 本地环境
+          __PRO__:   false                                  // 生产环境
+        })
     ]
 };
 

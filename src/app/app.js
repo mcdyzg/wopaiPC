@@ -1,15 +1,19 @@
-/**
- * Created by Eugene on 16/11/28.
- */
 "use strict";
+window.__G__ = {};
+window._ = {};
+import _map from 'lodash/map'
+_.map = _map;
+
 //基本组件
 import React,{Component} from  'react'
 import ReactDOM from 'react-dom'
 import {Router,hashHistory} from 'react-router'
 
-//demo
-import PageOne from '../pages/PageOne'
-import PageTwo from '../pages/PageTwo'
+// 页面
+import Home from '../pages/Home'
+import ArticleDetail from '../pages/ArticleDetail'
+import UserList from '../pages/UserList'
+import UserDetail from '../pages/UserDetail'
 
 class App extends Component {
     constructor(props) {
@@ -18,18 +22,21 @@ class App extends Component {
 
     render() {
         return (
-            <section>
+            <div>
                 {this.props.children}
-            </section>
+            </div>
         )
     }
 }
 const routes = {
     path: '/',
     component: App,
-    indexRoute: {component: PageOne},
+    indexRoute: {component: Home},
     childRoutes: [
-        {path: '/pageTwo', component: PageTwo}
+        {path: '/home',             component: Home},
+        {path: '/article/:id',      component: ArticleDetail},
+        {path: '/userlist',         component: UserList},
+        {path: '/userdetail/:uid',       component: UserDetail}
     ]
 };
-ReactDOM.render(<Router history={hashHistory} routes={routes}/>, document.getElementById('app'));
+ReactDOM.render(<Router history={hashHistory}  onUpdate={() => window.scrollTo(0,0)}  routes={routes}/>, document.getElementById('app'));
