@@ -28,7 +28,7 @@ class UserInfo extends Component {
 			
 			<div key={index} className='hc-card'>
 				<a key={index} href={'#/article/'+item.id}>
-				<img  style={{height:$(window).width()/1.41+'px',height:$(window).width()/5.29+'vw',overflow:'hidden'}} onClick={t.handleConcern} src={item.thumb} className='hi-pic' />
+				<img  style={{height:$('.body-wrap').width()/1.41+'px',overflow:'hidden'}} onClick={t.handleConcern} src={item.thumb} className='hi-pic' />
 				</a>
 				<div className='hi-bottom-wrap'>
 					<a href={'#/article/'+item.id}>
@@ -54,7 +54,7 @@ class UserInfo extends Component {
     	const t = this;
         return (
             <div className="userdetail" style={{minHeight:$(window).height()+'px'}}>
-            	<img style={{height:$(window).width()/2.5+'px',height:$(window).width()/9.375+'vw',overflow:'hidden'}} className='ud-cover' src={t.state.userDetail && t.state.userDetail.cover} />
+            	<img style={{height:$('.body-wrap').width()/2.5+'px',overflow:'hidden'}} className='ud-cover' src={t.state.userDetail && t.state.userDetail.cover} />
             	<div className='userlist-top' style={{background:'#FFF'}}>
 	            	<img className='ul-avatar' src={t.state.userDetail && t.state.userDetail.pic} />
 	            	<div className='ul-name'>

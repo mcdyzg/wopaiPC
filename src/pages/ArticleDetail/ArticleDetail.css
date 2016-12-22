@@ -1,24 +1,24 @@
 .hb-zhaiyao{
 	font-size: 12px;
-    font-size: 3.2vw;
+    /*font-size: 3.2vw;*/
     margin:0 15px;
-    margin:0 4vw;
+    /*margin:0 4vw;*/
     padding: 12.5px 0 10px;
-    padding: 3.33vw 0 2.67vw;
+    /*padding: 3.33vw 0 2.67vw;*/
     color:#999;
     line-height: 18px;
-    line-height: 4.8vw;
+    /*line-height: 4.8vw;*/
     border-bottom: 1px dashed #666;
 }
 .hb-zhaiyao1{
     font-size: 15px;
-    font-size: 4vw;
+    /*font-size: 4vw;*/
     line-height: 20px;
-    line-height: 5.33vw;
+    /*line-height: 5.33vw;*/
 }
 .hb-left{
 	height: 60px;
-	height:16vw;
+	/*height:16vw;*/
     background-repeat: no-repeat;
     background-position: center 40%;
 	background-size: 40%;
@@ -28,18 +28,18 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 13px;
-    font-size: 3.47vw;
+    /*font-size: 3.47vw;*/
     margin: 5px 10px;
-    margin: 1.33vw 2.67vw;
+    /*margin: 1.33vw 2.67vw;*/
     height: 15px;
     line-height: 15px;
-    height: 4vw;
-    line-height: 4vw;
+    /*height: 4vw;*/
+    /*line-height: 4vw;*/
     color:#666;
 }
 .detail-bottom{
 	border-top: 1px solid #e6e6e6;
 	background: #fff;
 	margin-bottom: 10px;
-    margin-bottom:2.67vw;
+    /*margin-bottom:2.67vw;*/
 }

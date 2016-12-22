@@ -35,7 +35,7 @@ class ArticleDetail extends Component {
             <div className="detail">
             	<div style={{height:1}}></div>
                 <div className='hc-card'>
-                	<img src={t.state.thumb || ''} className='hi-pic' style={{height:$(window).width()/1.41+'px',height:$(window).width()/5.29+'vw',overflow:'hidden'}} />
+                	<img src={t.state.thumb || ''} className='hi-pic' style={{height:$('.body-wrap').width()/1.41+'px',overflow:'hidden'}} />
                 	<div className='hi-bottom-wrap'>
 						<div className='hb-title'>
 							{t.state.title ||'-'}

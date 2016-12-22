@@ -29,7 +29,7 @@ class Home extends Component {
 		const temArr = [];
 		_.map(t.state.bannerArr,function(item, index){
 			temArr.push(
-			<div key={index} className='slide-content' style={{height:$(window).width()/2.5+'px',height:$(window).width()/9.375+'vw',overflow:'hidden'}}>
+			<div key={index} className='slide-content' style={{height:$('.body-wrap').width()/2.5+'px',overflow:'hidden'}}>
 				<a href={item.href || '#/'}><img key={index} src={item.src} className='slide-item' /></a>
 			</div>)
 		})
@@ -64,7 +64,7 @@ class Home extends Component {
 			temArr.push(
 			<div key={index} className='hc-card'>
 				<a href={'#/article/'+item.id}>
-				<img alt={item.title ||'-'} onClick={t.handleConcern} style={{height:$(window).width()/1.41+'px',height:$(window).width()/5.29+'vw',overflow:'hidden'}} src={item.thumb} className='hi-pic' />
+				<img alt={item.title ||'-'} onClick={t.handleConcern} style={{height:$('.body-wrap').width()/1.41+'px',overflow:'hidden'}} src={item.thumb} className='hi-pic' />
 				</a>
 				<div className='hi-bottom-wrap'>
 					<a href={'#/article/'+item.id}>
@@ -87,7 +87,7 @@ class Home extends Component {
 					</div>
 					<div className='hb-address'>
 						<span className="grey">坐标：</span>
-						<span style={{marginLeft:'10px',marginLeft:'2.67vw'}} className="word1">{item.city ||'-'}</span>
+						<span style={{marginLeft:'10px'}} className="word1">{item.city ||'-'}</span>
 					</div>
 					<div className='hb-view'>
 						<div data-id={item.id} onClick={t.handleZan.bind(this,item.id)} className='hv-zan' style={{backgroundImage:'url(assets/img/not_zan.png)'}}>
