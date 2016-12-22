@@ -35,7 +35,7 @@ const routes = {
     childRoutes: [
         {path: '/home',             component: Home},
         {path: '/article/:id',      component: ArticleDetail},
-        {path: '/userlist',         component: UserList},
+        {path: '/userlist/:type',         component: UserList},
         {path: '/userdetail/:uid',       component: UserDetail}
     ]
 };

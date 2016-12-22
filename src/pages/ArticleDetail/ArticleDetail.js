@@ -15,11 +15,18 @@ class ArticleDetail extends Component {
         Action.getArticleDetail(this.props.params.id)
 	}
 
-	handleZan(ctx){
-		// DB.Wopai.likeAjax().then(function(){
+	handleZan(id,ctx){
+		if($(ctx.target).hasClass('zan-active')){
+			return;
+		}
+		DB.Wopai.likeAjax({
+			aid:id
+		}).then(function(data){
 			
-		// })
+		})
+		$(ctx.target).addClass('zan-active')
 		$(ctx.target).css('backgroundImage','url(assets/img/zan.png)')
+		$(ctx.target).parent().find('.likes').html(+($(ctx.target).parent().find('.likes').html())+1)
 	}
 
     render() {
@@ -28,7 +35,7 @@ class ArticleDetail extends Component {
             <div className="detail">
             	<div style={{height:1}}></div>
                 <div className='hc-card'>
-                	<img src={t.state.thumb || ''} className='hi-pic' style={{minHeight:100}} />
+                	<img src={t.state.thumb || ''} className='hi-pic' style={{height:$(window).width()/1.41+'px',height:$(window).width()/5.29+'vw',overflow:'hidden'}} />
                 	<div className='hi-bottom-wrap'>
 						<div className='hb-title'>
 							{t.state.title ||'-'}
@@ -36,29 +43,27 @@ class ArticleDetail extends Component {
 						<div className='hb-date'>
 							{t.state.date ||'-'}
 						</div>
-						<div className='hb-devider'></div>
-						<div className='hb-zhaiyao'>
+						<div className='hb-zhaiyao hb-zhaiyao1'>
 							{t.state.desc || '-'}
 						</div>
-						<div className='hb-zhaiyao' style={{color:'#4d4d4d',border:'none'}}>
-							{t.state.content || '-'}
+						<div className='hb-zhaiyao' style={{overflow:'hidden',color:'#4d4d4d',border:'none'}} dangerouslySetInnerHTML={{__html: t.state.content || '-'}}>
 						</div>
 
 						<div style={{borderBottom:'1px solid #e6e6e6'}} ></div>
 
 						<div className='hb-view'>
-							<div onClick={t.handleZan.bind(this)} className={true?'hv-zan zan-active':'hv-zan zan-noactive'} style={{backgroundImage:'url(assets/img/not_zan.png)'}}>
+							<div onClick={t.handleZan.bind(this,this.props.params.id)} className='hv-zan' style={{backgroundImage:'url(assets/img/not_zan.png)'}}>
 							</div>
-							<span className='word1 hv-num'>{t.state.likes ||'-'}</span>
+							<span className='word1 hv-num likes'>{t.state.likes}</span>
 							<div style={{backgroundImage:'url(assets/img/view.png)'}} className='hv-zan'>
 							</div>
-							<span className='word1 hv-num'>{t.state.views ||'-'}</span>
+							<span className='word1 hv-num'>{t.state.views}</span>
 						</div>
 					</div>
                 </div>
 
                 <div className='detail-bottom'>
-                	<a href='#/userdetail/11'>
+                	<a href={'#/userdetail/'+(t.state.getPhotographer ? t.state.getPhotographer.id : '')}>
                 	<div className='hp-item flex-h jc-start ai-center'>
 						<img src={t.state.getPhotographer && t.state.getPhotographer.pic || ''} className='hp-avatar' />
 						<div className='flex1'>
@@ -82,7 +87,7 @@ class ArticleDetail extends Component {
                 
 
                 <div className='detail-bottom'>
-                	<a href='#/userdetail/11'>
+                	<a href={'#/userdetail/'+(t.state.model ? t.state.model.id : '')}>
                 	<div className='hp-item flex-h jc-start ai-center'>
 						<img src={t.state.model && t.state.model.pic || ''} className='hp-avatar' />
 						<div className='flex1'>

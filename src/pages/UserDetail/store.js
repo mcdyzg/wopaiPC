@@ -26,11 +26,28 @@ export default createStore({
         });
     },
 
-    onGetArticle(sort,num){
+    onGetArticle(sort,num,uid){
         const t = this;
         DB.Wopai.getArticle({
             page:sort,
-            pageNum:num
+            pageNum:num,
+            userId:uid
+        }).then(function (data) {
+            if(data){
+                t.state.page = sort;
+                t.state.userArticleList = data;
+            }
+            t.updateComponent();
+            
+        });
+    },
+
+    onGetMoreArticle(sort,num,uid){
+        const t = this;
+        DB.Wopai.getArticle({
+            page:sort,
+            pageNum:num,
+            userId:uid
         }).then(function (data) {
             if(data){
                 t.state.page++;

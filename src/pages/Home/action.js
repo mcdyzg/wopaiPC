@@ -4,5 +4,6 @@ export default Reflux.createActions([
     'getBanner',
     'getArticle',
     'getPhotographers',
-    'getModels'
+    'getModels',
+    'getMoreArticle'
 ]);

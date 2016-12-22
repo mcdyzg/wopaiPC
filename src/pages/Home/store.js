@@ -12,7 +12,8 @@ export default createStore({
             photographerList:[],
             modelList:[],
             page:0,
-            showDropdown:false
+            showDropdown:false,
+            showModal:false
         };
     },
 
@@ -27,6 +28,20 @@ export default createStore({
     },
 
     onGetArticle(sort,num){
+        const t = this;
+        DB.Wopai.getArticle({
+            page:sort,
+            pageNum:num
+        }).then(function (data) {
+            if(data){
+                t.state.page = sort;
+                t.state.articleList = data;
+            }
+            t.updateComponent();
+        });
+    },
+
+    onGetMoreArticle(sort,num){
         const t = this;
         DB.Wopai.getArticle({
             page:sort,

@@ -11,7 +11,7 @@ class UserList extends Component {
 		super(props,context)
 		this.state = {};
         this.store = Store;
-        Action.getUser(1,10)
+        Action.getUser(1,10,this.props.params.type)
         this.loadMore = this.loadMore.bind(this);
 	}
 
@@ -23,7 +23,7 @@ class UserList extends Component {
 		const temArr = [];
 		_.map(t.state.userList,function(item, index){
 			temArr.push(
-			<a key={index} href={'#/userdetail/'+index}>
+			<a key={index} href={'#/userdetail/'+item.id}>
 			<div key={index} className='hc-card2'>
             	<div className='userlist-top'>
             		<img className='ul-avatar' src={item.pic} />
@@ -32,7 +32,7 @@ class UserList extends Component {
             		</div>
             		<div className='ul-view flex-h jc-center'>
 						<div className='hp-zan' style={{backgroundImage:'url(assets/img/zan.png)'}} ></div>
-						<span className='hp-word'>{item.likes || '-'}</span>
+						<span className='hp-word'>{item.likes}</span>
 						
 
 
@@ -50,13 +50,13 @@ class UserList extends Component {
 	}
 
 	loadMore(){
-		Action.getUser(this.state.page+1,10);
+		Action.getMoreUser(this.state.page+1,10);
 	}
 
     render() {
     	const t = this;
         return (
-            <div className="userlist">
+            <div className="userlist" style={{minHeight:$(window).height()+'px'}}>
             	<div style={{height:1}}></div>
             	{
             		t.getUserList()

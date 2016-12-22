@@ -12,7 +12,7 @@ class UserInfo extends Component {
 		this.state = {};
         this.store = Store;
         Action.getUserDetail(this.props.params.uid);
-        Action.getArticle(1,10);
+        Action.getArticle(1,10,this.props.params.uid);
 
         this.loadMore = this.loadMore.bind(this)
 	}
@@ -20,24 +20,26 @@ class UserInfo extends Component {
 	getUserDetailList(){
 		const t = this;
 		if(t.state.userArticleList.length === 0){
-			return <div className=''></div>
+			return <div className='' style={{padding: 20,textAlign: 'center'}}>暂无文章</div>
 		}
 		const temArr = [];
 		_.map(t.state.userArticleList,function(item, index){
 			temArr.push(
 			
 			<div key={index} className='hc-card'>
-				<a key={index} href={'#/article/'+index}>
-				<img onClick={t.handleConcern} src={item.thumb} className='hi-pic' />
+				<a key={index} href={'#/article/'+item.id}>
+				<img  style={{height:$(window).width()/1.41+'px',height:$(window).width()/5.29+'vw',overflow:'hidden'}} onClick={t.handleConcern} src={item.thumb} className='hi-pic' />
 				</a>
 				<div className='hi-bottom-wrap'>
+					<a href={'#/article/'+item.id}>
 					<div className='hb-title'>
 						{item.title ||'-'}
 					</div>
+					</a>
 					<div className='hb-date'>
 						{item.date ||'-'}
 					</div>
-					<div className='hb-devider ud-devider'></div>
+					<div className='ud-devider'></div>
 				</div>
 			</div>)
 		})
@@ -45,14 +47,14 @@ class UserInfo extends Component {
 	}
 
 	loadMore(){
-		Action.getArticle(this.state.page+1,10);
+		Action.getArticle(this.state.page+1,10,this.props.params.uid);
 	}
 
     render() {
     	const t = this;
         return (
-            <div className="userdetail">
-            	<img className='ud-cover' src={t.state.userDetail && t.state.userDetail.cover} />
+            <div className="userdetail" style={{minHeight:$(window).height()+'px'}}>
+            	<img style={{height:$(window).width()/2.5+'px',height:$(window).width()/9.375+'vw',overflow:'hidden'}} className='ud-cover' src={t.state.userDetail && t.state.userDetail.cover} />
             	<div className='userlist-top' style={{background:'#FFF'}}>
 	            	<img className='ul-avatar' src={t.state.userDetail && t.state.userDetail.pic} />
 	            	<div className='ul-name'>
@@ -60,7 +62,7 @@ class UserInfo extends Component {
 	            	</div>
 	            	<div className='ul-view flex-h jc-center ai-center'>
 						<div className='hp-zan'  style={{backgroundImage:'url(assets/img/zan.png)'}}  ></div>
-						<span className='hp-word'>{t.state.userDetail && t.state.userDetail.likes || '-'}</span>
+						<span className='hp-word'>{t.state.userDetail && t.state.userDetail.likes}</span>
 					</div>
 					<div style={{height:1}} ></div>
 	            </div>

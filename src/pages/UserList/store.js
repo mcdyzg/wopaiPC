@@ -13,11 +13,27 @@ export default createStore({
         };
     },
 
-    onGetUser(sort,num){
+    onGetUser(sort,num,type){
         const t = this;
         DB.Wopai.getUser({
             page:sort,
-            pageNum:num
+            pageNum:num,
+            type:type
+        }).then(function (data) {
+            if(data){
+                t.state.page = sort;
+                t.state.userList = data;
+            }
+            t.updateComponent();
+        });
+    },
+
+    onGetMoreUser(sort,num,type){
+        const t = this;
+        DB.Wopai.getUser({
+            page:sort,
+            pageNum:num,
+            type:type
         }).then(function (data) {
             if(data){
                 t.state.page++;

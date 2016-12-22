@@ -4,14 +4,15 @@ var DBF = require('./dbFactory');
 // 开发环境
 if (__LOCAL__) {   
     var urlPrefix= 
-   	// '//localhost:3000/';
-   	'./data/';
+   	'//www.yihu.space:808/';
+   	// './data/';
 }
 
 // 生产环境
 if (__PRO__) {  
     var urlPrefix = 
-    './data/';
+    '//www.yihu.space:808/';
+    // './data/';
     
 }
 
@@ -23,36 +24,36 @@ DBF.set('defaultParsePesp', function(resp){
 
 DBF.create('Wopai', {
 	getBanner:{
-		url       :'banner.json',
+		url       :'getBanner',
 		type      :'GET'
 	},
 	getArticle:{
-		url       :'article.json',
+		url       :'getArtic',
 		type      :'GET'
 	},
 	getPhotographers:{
-		url       :'photographers.json',
+		url       :'getPhotographers',
 		type      :'GET'
 	},
 	getModels:{
-		url       :'models.json',
+		url       :'getModels',
 		type      :'GET'
 	},
 	getArticleDetail:{
-		url       :'articleDetail.json',
+		url       :'getArticDetail',
 		type      :'GET'
 	},
 	getUser:{
-		url       :'userlist.json',
+		url       :'getUsers',
 		type      :'GET'
 	},
 	getUserDetail:{
-		url       :'userdetail.json',
+		url       :'getUserDetail',
 		type      :'GET'
 	},
 	likeAjax:{
-		url       :'/likeAjax',
-		type      :'GET'
+		url       :'likeAjax',
+		type      :'POST'
 	},
 });
 
