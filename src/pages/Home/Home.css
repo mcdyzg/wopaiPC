@@ -343,3 +343,48 @@ html{
     right:6%;
     z-index: 102;
 }
+
+/*头部导航*/
+.nav-wrap{
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index: 999;
+    background: #000000;
+}
+.top-nav{
+    max-width: 700px;
+    margin:0 auto;
+    background: #000000;
+    color:#fff;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height:45px;
+    line-height: 45px;
+    display: flex;
+    flex-wrap: nowrap
+}
+.nav-item{
+    flex:0 0 auto;
+    text-align: center;
+    display: inline-block;
+    padding:0 15px;
+    position: relative;
+}
+.nav-word{
+    color:#999;
+}
+.nav-word.active{
+    color:#fff;
+}
+.nav-word.active:after{
+    left: 50%;
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 18px;
+    background: #fff;
+    bottom: 7px;
+    margin-left: -9px;
+}
