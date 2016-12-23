@@ -1,6 +1,6 @@
-@media (min-width: 540px) {
+@media (min-width: 700px) {
     .body-wrap{
-        width:540px;
+        width:700px;
         margin:0 auto;
     }
 }
