@@ -14,7 +14,7 @@ class Home extends Component {
 		this.state = {};
         this.store = Store;
         Action.getBanner()
-        Action.getArticle(1,10);
+        Action.getArticle(1,6);
         Action.getPhotographers()
         Action.getModels();
 
@@ -29,7 +29,7 @@ class Home extends Component {
 		const temArr = [];
 		_.map(t.state.bannerArr,function(item, index){
 			temArr.push(
-			<div key={index} className='slide-content' style={{height:$('.body-wrap').width()/2.5+'px',overflow:'hidden'}}>
+			<div key={index} className='slide-content' style={{height:$(window).width()/2.5+'px',overflow:'hidden'}}>
 				<a href={item.href || '#/'}><img key={index} src={item.src} className='slide-item' /></a>
 			</div>)
 		})
@@ -51,7 +51,7 @@ class Home extends Component {
 	}
 
 	loadMore(){
-		Action.getMoreArticle(this.state.page+1,10);
+		Action.getMoreArticle(this.state.page+1,6);
 	}
 
 	getContent(){
@@ -64,7 +64,7 @@ class Home extends Component {
 			temArr.push(
 			<div key={index} className='hc-card'>
 				<a href={'#/article/'+item.id}>
-				<img alt={item.title ||'-'} onClick={t.handleConcern} style={{height:$('.body-wrap').width()/1.41+'px',overflow:'hidden'}} src={item.thumb} className='hi-pic' />
+				<img alt={item.title ||'-'} onClick={t.handleConcern} style={{height:'275px',overflow:'hidden'}} src={item.thumb} className='hi-pic' />
 				</a>
 				<div className='hi-bottom-wrap'>
 					<a href={'#/article/'+item.id}>
@@ -75,21 +75,7 @@ class Home extends Component {
 					<div className='hb-date'>
 						{item.date ||'-'}
 					</div>
-					<div className='flex-h hb-people jc-start'>
-						<div className='flex1'>
-							<span className="grey">摄影师：</span>
-							<span className="word1">{item.photographer ||'-'}</span>
-						</div>
-						<div className='flex1'>
-							<span className="grey">模特：</span>
-							<span className="word1">{item.model ||'-'}</span>
-						</div>
-					</div>
-					<div className='hb-address'>
-						<span className="grey">坐标：</span>
-						<span style={{marginLeft:'10px'}} className="word1">{item.city ||'-'}</span>
-					</div>
-					<div className='hb-view'>
+					<div className='hb-view flex-h ai-center jc-start'>
 						<div data-id={item.id} onClick={t.handleZan.bind(this,item.id)} className='hv-zan' style={{backgroundImage:'url(assets/img/not_zan.png)'}}>
 						</div>
 						<span className='word1 hv-num likes'>{item.likes}</span>
@@ -108,27 +94,32 @@ class Home extends Component {
 		if(t.state.photographerList.length === 0){
 			return <div className=''></div>
 		}
+
 		const temArr = [];
 		_.map(t.state.photographerList,function(item, index){
 			temArr.push(
 				<a key={index} href={'#/userdetail/'+item.id}>
-				<div key={index} className='hp-item flex-h jc-start ai-center'>
-					<img src={item.pic} className='hp-avatar' />
-					<div className='flex1'>
-						<div className='hp-name1'>
-							{item.name}
-						</div>
-						<div className='hp-name2'>
-							<div className='hp-zan' style={{backgroundImage:'url(assets/img/zan.png)'}} ></div>
-							<span className='hp-word'>{item.likes}</span>
-							
+			<div key={index} className='hc-card2'>
+            	<div className='userlist-top'>
+            		<img className='ul-avatar' src={item.pic} />
+            		<div className='ul-name'>
+            			{item.name || '-'}
+            		</div>
+            		<div className='ul-view flex-h ai-center jc-center'>
+						<div className='hp-zan' style={{backgroundImage:'url(assets/img/zan.png)'}} ></div>
+						<span className='hp-word'>{item.likes}</span>
+						
 
 
-						</div>
 					</div>
-
-				</div>
-				</a>
+					<div className='ul-pic-content flex-h jc-space-between'>
+						<img className='ul-pic' src={item.morePics ?item.morePics[0].src:''} />
+						<img className='ul-pic' src={item.morePics ?item.morePics[1].src:''} />
+						<img className='ul-pic' src={item.morePics ?item.morePics[2].src:''} />
+					</div>
+            	</div>
+            </div>
+            </a>
 				)
 		})
 		return temArr;
@@ -142,25 +133,28 @@ class Home extends Component {
 		const temArr = [];
 		_.map(t.state.modelList,function(item, index){
 			temArr.push(
-				<a key={index} href={'#/userdetail/'+index}>
-				<div key={index} className='hp-item flex-h jc-start ai-center'>
-					<img src={item.pic} className='hp-avatar' />
-					<div className='flex1'>
-						<div className='hp-name1'>
-							{item.name}
-						</div>
-						<div className='hp-name2 ai-center jc-start flex-h' >
-							<div className='hp-zan' style={{backgroundImage:'url(assets/img/zan.png)'}} ></div>
-							<span className='hp-word'>{item.likes}</span>
-							
+				<a key={index} href={'#/userdetail/'+item.id}>
+			<div key={index} className='hc-card2'>
+            	<div className='userlist-top'>
+            		<img className='ul-avatar' src={item.pic} />
+            		<div className='ul-name'>
+            			{item.name || '-'}
+            		</div>
+            		<div className='ul-view flex-h ai-center jc-center'>
+						<div className='hp-zan' style={{backgroundImage:'url(assets/img/zan.png)'}} ></div>
+						<span className='hp-word'>{item.likes}</span>
+						
 
 
-						</div>
 					</div>
-					
-
-				</div>
-				</a>
+					<div className='ul-pic-content flex-h jc-space-between'>
+						<img className='ul-pic' src={item.morePics?item.morePics[0].src:''} />
+						<img className='ul-pic' src={item.morePics?item.morePics[1].src:''} />
+						<img className='ul-pic' src={item.morePics?item.morePics[2].src:''} />
+					</div>
+            	</div>
+            </div>
+            </a>
 				)
 		})
 		return temArr;
@@ -178,7 +172,11 @@ class Home extends Component {
 	      speed: 500,
 	      arrows:false,
 	      slidesToShow: 1,
+	      draggable:false,
 	      slidesToScroll: 1,
+	      arrows:true,
+	      prevArrow:<ArrowLeft />,
+	      nextArrow:<ArrowRight />,
 	      className:'slide-wrap'
 	    };
         return (
@@ -189,70 +187,71 @@ class Home extends Component {
 				    	t.getBannerImg()
 				    }
 				</Slider>
-				<img onClick={()=>this.setState({showModal:true})} src='assets/img/concern.png' className='home-concern' />
-				<div className='title-bar flex-h ai-center' style={{backgroundImage:'url(assets/img/logo.png)'}} >
-					<svg onClick={()=>this.setState({showDropdown:!t.state.showDropdown})} viewBox="0 0 1024 1024" width="32" height="32"><path d="M128 213.344l768 0q17.664 0 30.176 12.512t12.512 30.176-12.512 30.176-30.176 12.512l-768 0q-17.664 0-30.176-12.512t-12.512-30.176 12.512-30.176 30.176-12.512zM128 725.344l768 0q17.664 0 30.176 12.512t12.512 30.176-12.512 30.176-30.176 12.512l-768 0q-17.664 0-30.176-12.512t-12.512-30.176 12.512-30.176 30.176-12.512zM128 469.344l768 0q17.664 0 30.176 12.512t12.512 30.176-12.512 30.176-30.176 12.512l-768 0q-17.664 0-30.176-12.512t-12.512-30.176 12.512-30.176 30.176-12.512z"  fill="#515151"></path></svg>
-					<div className='title-dropdown' style={{display:t.state.showDropdown?'block':'none'}}>
-						<div onClick={()=>{this.setState({showDropdown:!t.state.showDropdown});window.location.href="#/"}} className='title-dropdown-item'>
-							首页
+				<div className='home-content'>
+					<div className='biaoti-bar flex-h jc-space-between'>
+						<div className='bb-leftbtn'>
+							文章
 						</div>
-						<a href='#/userlist/photographer'>
-						<div className='title-dropdown-item'>
+						
+						<a href='#/articlelist/all'>
+						<div className='bb-rightbtn'>
+							+ 更多
+						</div>
+						</a>
+						
+					</div>
+					<div className='flex-h jc-start' style={{flexWrap:'wrap',marginRight:-15}} >
+						{
+							t.getContent()
+						}
+
+
+					</div>
+				
+					<div className='biaoti-bar flex-h jc-space-between'>
+						<div className='bb-leftbtn'>
 							摄影师
 						</div>
-						</a>
-						<a href='#/userlist/model'>
-						<div className='title-dropdown-item'>
-							模特
+						<a href='#/userlist/photographer'>
+						<div className='bb-rightbtn'>
+							+ 更多
 						</div>
 						</a>
 					</div>
-				</div>
-				<div className='home-content'>
-				{
-					t.getContent()
-				} 
-				</div>
-				<div onClick={t.loadMore} className='home-loadmore'>
-					加载更多
-				</div>
-				<div className='home-people'>
-					<div className='hp-title'>
-						摄影师
-						<span className='hp-fu-title'>PHOTOGRAPHER</span>
-						<a href='#/userlist/photographer'><span className='hp-seeall'>查看全部</span></a>
+					<div className='flex-h jc-start' style={{flexWrap:'wrap',marginRight:-15}} >
+						{
+							t.getPhotographersBlock()
+						}
+
 					</div>
-					{
-						t.getPhotographersBlock()
-					}
-				</div>
-				<div className='home-people'>
-					<div className='hp-title'>
-						模特
-						<span className='hp-fu-title'>MODEL</span>
-						<a href='#/userlist/model'><span className='hp-seeall'>查看全部</span></a>
+
+					<div className='biaoti-bar flex-h jc-space-between'>
+						<div className='bb-leftbtn'>
+							模特
+						</div>
+						<a href='#/userlist/model'>
+						<div className='bb-rightbtn'>
+							+ 更多
+						</div>
+						</a>
 					</div>
-					{
-						t.getModelsBlock()
-					}
+					<div className='flex-h jc-start' style={{flexWrap:'wrap',marginRight:-15}} >
+						{
+							t.getModelsBlock()
+						}
+					</div>
 				</div>
+
+				
+
 				<div style={{height:1}}></div>
-				<div className='erweima-wrap' style={{display:t.state.showModal?'block':'none'}} >
-					<div className='backdrop'></div>
-					<img onClick={()=>this.setState({showModal:false})} className='close' src='assets/img/close.png' />
-					<img className='erweima' src='assets/img/erweima.png' />
-				</div>
+				
             </div>
         )
     }
 }
 export default Home
 
-// 帖子缺少 是否已点赞 字段
-// 点赞 接口 aid不知从哪里获取 点赞是否可撤回
-// 获取摄影师和模特信息的接口缺少 view(浏览量)字段
-// 文章缺少 文章id字段 文章详情页接口需要id
-// 查看全部 指向页面不明
 
 // 约拍
 // <div className='hp-btn' onClick={t.yuepai} >
@@ -263,3 +262,38 @@ export default Home
 // <span className='hp-word'>/</span>
 // <div className='hp-rank'></div>
 // <span className='hp-word'>{item.likes}</span>
+
+
+class ArrowLeft extends React.Component{
+	render() {
+    return <div {...this.props} className='arrow arrow-left' style={{backgroundImage:'url(assets/img/arrowleft.png)'}} ></div>
+  }
+}
+class ArrowRight extends React.Component{
+	render() {
+    return <div {...this.props} className='arrow arrow-right' style={{backgroundImage:'url(assets/img/arrowright.png)'}} ></div>
+  }
+}
+
+
+// 首页卡片的里的资料
+// <div className='flex-h hb-people jc-start'>
+// 	<div className='flex1'>
+// 		<span className="grey">摄影师：</span>
+// 		<span className="word1">{item.photographer ||'-'}</span>
+// 	</div>
+// 	<div className='flex1'>
+// 		<span className="grey">模特：</span>
+// 		<span className="word1">{item.model ||'-'}</span>
+// 	</div>
+// </div>
+// <div className='hb-address'>
+// 	<span className="grey">坐标：</span>
+// 	<span style={{marginLeft:'10px'}} className="word1">{item.city ||'-'}</span>
+// </div>
+
+
+// 加载更多按钮
+// <div onClick={t.loadMore} className='home-loadmore'>
+	// 加载更多
+// </div>

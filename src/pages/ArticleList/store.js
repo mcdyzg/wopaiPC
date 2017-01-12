@@ -8,52 +8,39 @@ export default createStore({
 
     init() {
         this.state = {
+            articleList:[],
             page:0,
-            userArticleList:[]
+            showModal:false
         };
     },
 
-    onGetUserDetail(id){
-        const t = this;
-        DB.Wopai.getUserDetail({
-            id:id
-        }).then(function (data) {
-            if(data){
-                t.state.userDetail = data;
-            }
-            t.updateComponent();
-        });
-    },
-
-    onGetArticle(sort,num,uid){
+    onGetArticle(sort,num,type){
         const t = this;
         DB.Wopai.getArticle({
             page:sort,
             pageNum:num,
-            userId:uid
+            type:type
         }).then(function (data) {
             if(data){
                 t.state.page = sort;
-                t.state.userArticleList = data;
+                t.state.articleList = data;
             }
             t.updateComponent();
-            
         });
     },
 
-    onGetMoreArticle(sort,num,uid){
+    onGetMoreArticle(sort,num,type){
         const t = this;
         DB.Wopai.getArticle({
             page:sort,
             pageNum:num,
-            userId:uid
+            type:type
         }).then(function (data) {
             if(data){
                 t.state.page++;
-                t.state.userArticleList = t.state.userArticleList.concat(data);
+                t.state.articleList = t.state.articleList.concat(data);
             }
             t.updateComponent();
-            
         });
     },
 

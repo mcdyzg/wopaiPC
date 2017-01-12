@@ -37,7 +37,7 @@ class UserList extends Component {
 
 
 					</div>
-					<div className='ul-pic-content'>
+					<div className='ul-pic-content flex-h jc-space-between'>
 						<img className='ul-pic' src={item.morePics[0].src} />
 						<img className='ul-pic' src={item.morePics[1].src} />
 						<img className='ul-pic' src={item.morePics[2].src} />
@@ -58,9 +58,12 @@ class UserList extends Component {
         return (
             <div className="userlist" style={{minHeight:$(window).height()+'px'}}>
             	<div style={{height:1}}></div>
-            	{
-            		t.getUserList()
-            	}
+            	<div className='flex-h jc-start' style={{flexWrap:'wrap',marginRight:-15}}>
+            		{
+	            		t.getUserList()
+	            	}
+            	</div>
+            	
             	<div onClick={t.loadMore} className='home-loadmore'>
 					加载更多
 				</div>

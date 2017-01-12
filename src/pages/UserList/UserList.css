@@ -1,41 +1,52 @@
+.userlist{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding:30px 0;
+}
+
 .hc-card2{
     border-radius: 5px;
-    margin: 5px 5px 10px;
-    /*margin: 1.33vw 1.33vw 2.67vw;*/
+    margin: 5px 15px 20px 0;
+    overflow: hidden;
+    /* margin: 1.33vw 1.33vw 2.67vw; */
     background: #FFF;
+    /* height: 410px; */
+    width: 390px;
+    flex-shrink: 0;
     border:1px solid #E3E3E3;
-    padding:0 5px;
-    /*padding:0 1.33vw;*/
 }
 .userlist-top{
     text-align: center;
+    padding:15px;
 }
 .ul-avatar{
-    height:68.5px;
+    height:100px;
     /*height:18.27vw;*/
-    width:68.5px;
+    width:100px;
     /*width:18.27vw;*/
-    margin:15px 0 20px;
+    margin:15px 0 15px;
     /*margin:4vw 0 5.33vw;*/
+    border-radius: 50%;
 }
 .ul-name{
-    font-size: 16px;
+    font-size: 18px;
     /*font-size: 4.27vw;*/
     color:#666;
 }
 .ul-view{
-    height: 15px;
     /*height:4vw;*/
     line-height: 15px;
     /*line-height: 4vw;*/
-    margin:12.5px 0 25px;
+    margin:15px 0 34px;
     /*margin:3.33vw 0 6.67vw;*/
 }
 .ul-pic-content{
 
 }
 .ul-pic{
-    padding:5px 5px 10px;
+    /*padding:5px 5px 10px;*/
     /*padding:1.33vw 1.33vw 2.67vw;*/
-    width:33%;
+    width:117px;
+    height:147px;
+    border-radius: 5px;
 }

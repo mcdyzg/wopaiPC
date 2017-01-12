@@ -12,8 +12,7 @@ export default createStore({
             photographerList:[],
             modelList:[],
             page:0,
-            showDropdown:false,
-            showModal:false
+            showModal:false,
         };
     },
 
@@ -79,3 +78,22 @@ export default createStore({
         this.trigger(this.state);
     }
 });
+
+
+
+            // typelist:[{
+            //     typeValue: 1,
+            //     typeName: "分类"
+            // },{
+            //     typeValue: 2,
+            //     typeName: "分类"
+            // },{
+            //     typeValue: 3,
+            //     typeName: "分类"
+            // },{
+            //     typeValue: 4,
+            //     typeName: "分类"
+            // },{
+            //     typeValue: 5,
+            //     typeName: "分类"
+            // }]

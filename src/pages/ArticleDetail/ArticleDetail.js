@@ -34,80 +34,63 @@ class ArticleDetail extends Component {
         return (
             <div className="detail">
             	<div style={{height:1}}></div>
-                <div className='hc-card'>
-                	<img src={t.state.thumb || ''} className='hi-pic' style={{height:$('.body-wrap').width()/1.41+'px',overflow:'hidden'}} />
-                	<div className='hi-bottom-wrap'>
-						<div className='hb-title'>
-							{t.state.title ||'-'}
-						</div>
-						<div className='hb-date'>
-							{t.state.date ||'-'}
-						</div>
-						<div className='hb-zhaiyao hb-zhaiyao1'>
-							{t.state.desc || '-'}
-						</div>
-						<div className='hb-zhaiyao' style={{overflow:'hidden',color:'#4d4d4d',border:'none'}} dangerouslySetInnerHTML={{__html: t.state.content || '-'}}>
-						</div>
+                <div className='article-wrap'>
+                	<div className='article-bg' style={{backgroundImage:'url('+ (t.state.thumb || '') +')'}} >
+                		
+                	</div>
+                	<div className=''>
+                		<div style={{width:900,margin:'0 auto'}}>
+                			<div className='article-title' style={{width:($(window).width()-900)/2+900}} >
+								{t.state.title ||'-'}
+							</div>
+                		</div>
+						
 
-						<div style={{borderBottom:'1px solid #e6e6e6'}} ></div>
+						<div className='article-content'>
+							<div className='hb-date' style={{padding:0}}>
+								{t.state.date ||'-'}
+							</div>
 
-						<div className='hb-view'>
-							<div onClick={t.handleZan.bind(this,this.props.params.id)} className='hv-zan' style={{backgroundImage:'url(assets/img/not_zan.png)'}}>
+							<div className='flex-h hb-people jc-start'>
+								<div className='' style={{marginRight:40,display:(t.state.getPhotographer && t.state.getPhotographer.name)?'block':'none'}} >
+									<span className="grey">摄影师：</span>
+									<span className="word1">{t.state.getPhotographer? t.state.getPhotographer.name :'-'}</span>
+								</div>
+								<div className='' style={{marginRight:40,display:(t.state.model&& t.state.model.name)?'block':'none'}} >
+									<span className="grey">模特：</span>
+									<span className="word1">{t.state.model? t.state.model.name :'-'}</span>
+								</div>
+								<div className=''>
+									<span className="grey">坐标：</span>
+									<span className="word1">{t.state.address || '-'}</span>
+								</div>
 							</div>
-							<span className='word1 hv-num likes'>{t.state.likes}</span>
-							<div style={{backgroundImage:'url(assets/img/view.png)'}} className='hv-zan'>
-							</div>
-							<span className='word1 hv-num'>{t.state.views}</span>
-						</div>
-					</div>
-                </div>
 
-                <div className='detail-bottom'>
-                	<a href={'#/userdetail/'+(t.state.getPhotographer ? t.state.getPhotographer.id : '')}>
-                	<div className='hp-item flex-h jc-start ai-center'>
-						<img src={t.state.getPhotographer && t.state.getPhotographer.pic || ''} className='hp-avatar' />
-						<div className='flex1'>
-							<div className='hp-name1' style={{color:'#1a1a1a'}}>
-								{t.state.getPhotographer && t.state.getPhotographer.name || '-'}
+							<div className='hb-zhaiyao1'>
+								{t.state.desc || '-'}
 							</div>
-							<div className='hp-name3'>
-								摄影师
+
+							<div className='hb-zhaiyao' style={{overflow:'hidden',color:'#4d4d4d',border:'none'}} dangerouslySetInnerHTML={{__html: t.state.content || '-'}}>
+							</div>
+
+							<div style={{borderBottom:'1px solid #e6e6e6'}} ></div>
+
+							<div className='hb-view'>
+								<div onClick={t.handleZan.bind(this,this.props.params.id)} className='hv-zan' style={{backgroundImage:'url(assets/img/not_zan.png)'}}>
+								</div>
+								<span className='word1 hv-num likes'>{t.state.likes}</span>
+								<div style={{backgroundImage:'url(assets/img/view.png)'}} className='hv-zan'>
+								</div>
+								<span className='word1 hv-num'>{t.state.views}</span>
 							</div>
 						</div>
-						<div className='hp-name2'>
-							<div className='hp-zan' style={{backgroundImage:'url(assets/img/zan.png)'}} ></div>
-							<span className='hp-word'>{t.state.getPhotographer && t.state.getPhotographer.likes || '-'}</span>
+						
+						<div style={{backgroundImage:'url(assets/img/bottomlogo.png)'}} className='bottom-content'>
 							
-
-
 						</div>
 					</div>
-					</a>
                 </div>
-                
 
-                <div className='detail-bottom'>
-                	<a href={'#/userdetail/'+(t.state.model ? t.state.model.id : '')}>
-                	<div className='hp-item flex-h jc-start ai-center'>
-						<img src={t.state.model && t.state.model.pic || ''} className='hp-avatar' />
-						<div className='flex1'>
-							<div className='hp-name1' style={{color:'#1a1a1a'}}>
-								{t.state.model && t.state.model.name || '-'}
-							</div>
-							<div className='hp-name3'>
-								模特
-							</div>
-						</div>
-						<div className='hp-name2'>
-							<div className='hp-zan' style={{backgroundImage:'url(assets/img/zan.png)'}} ></div>
-							<span className='hp-word'>{t.state.model && t.state.model.likes || '-'}</span>
-							
-
-
-						</div>
-					</div>
-					</a>
-                </div>
 
                 <div style={{height:1}} ></div>
             </div>
@@ -125,3 +108,53 @@ export default ArticleDetail
 // <span className='hp-word'>/</span>
 // <div className='hp-rank'></div>
 // <span className='hp-word'>{t.state.getPhotographer && t.state.getPhotographer.likes || '-'}</span>
+
+
+
+// 底部的摄影师和模特版块
+// <div className='detail-bottom'>
+// 	<a href={'#/userdetail/'+(t.state.getPhotographer ? t.state.getPhotographer.id : '')}>
+// 	<div className='hp-item flex-h jc-start ai-center'>
+// 		<img src={t.state.getPhotographer && t.state.getPhotographer.pic || ''} className='hp-avatar' />
+// 		<div className='flex1'>
+// 			<div className='hp-name1' style={{color:'#1a1a1a'}}>
+// 				{t.state.getPhotographer && t.state.getPhotographer.name || '-'}
+// 			</div>
+// 			<div className='hp-name3'>
+// 				摄影师
+// 			</div>
+// 		</div>
+// 		<div className='hp-name2'>
+// 			<div className='hp-zan' style={{backgroundImage:'url(assets/img/zan.png)'}} ></div>
+// 			<span className='hp-word'>{t.state.getPhotographer && t.state.getPhotographer.likes || '-'}</span>
+			
+
+
+// 		</div>
+// 	</div>
+// 	</a>
+// </div>
+
+
+// <div className='detail-bottom'>
+// 	<a href={'#/userdetail/'+(t.state.model ? t.state.model.id : '')}>
+// 	<div className='hp-item flex-h jc-start ai-center'>
+// 		<img src={t.state.model && t.state.model.pic || ''} className='hp-avatar' />
+// 		<div className='flex1'>
+// 			<div className='hp-name1' style={{color:'#1a1a1a'}}>
+// 				{t.state.model && t.state.model.name || '-'}
+// 			</div>
+// 			<div className='hp-name3'>
+// 				模特
+// 			</div>
+// 		</div>
+// 		<div className='hp-name2'>
+// 			<div className='hp-zan' style={{backgroundImage:'url(assets/img/zan.png)'}} ></div>
+// 			<span className='hp-word'>{t.state.model && t.state.model.likes || '-'}</span>
+			
+
+
+// 		</div>
+// 	</div>
+// 	</a>
+// </div>
