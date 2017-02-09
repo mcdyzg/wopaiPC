@@ -7,7 +7,7 @@ _.map = _map;
 //基本组件
 import React,{Component} from  'react'
 import ReactDOM from 'react-dom'
-import {Router,hashHistory} from 'react-router'
+import {Router,hashHistory,Link,PropTypes,IndexLink } from 'react-router'
 
 // 页面
 import Home from '../pages/Home'
@@ -28,6 +28,10 @@ class App extends Component {
         }
     }
 
+    static contextTypes = {
+        router: React.PropTypes.object,
+    };
+
     componentDidMount(){
         const t = this;
         DB.Wopai.getArticleTypes().then((data)=>{
@@ -38,10 +42,10 @@ class App extends Component {
                 })
             }
         })
-        $(document).on('click','.nav-word',(e)=>{
-            $('.nav-word').removeClass('active')
-            $(e.target).addClass('active');
-        })
+        // $(document).on('click','.nav-word',(e)=>{
+        //     $('.nav-word').removeClass('active')
+        //     $(e.target).addClass('active');
+        // })
     }
 
     getTitleBar(){
@@ -52,9 +56,9 @@ class App extends Component {
         const temTitleArr = [];
         _.map(t.state.typelist,function(item, index){
             temTitleArr.push(
-            <a key={index} className='nav-word' href={'/#/articlelist/'+item.typeValue}>
+            <Link key={index} className='nav-word'  activeClassName='active' to={'/articlelist/'+item.typeValue}>
                                 {item.typeName}
-                            </a>)
+                            </Link>)
         })
         return temTitleArr;
     }
@@ -67,9 +71,9 @@ class App extends Component {
                     <div className='top-nav flex-h ai-center jc-space-between'>
                         <div className='flex-h ai-center jc-start'>
                             <img onClick={()=>window.location.href='#/'} style={{width:240,height:70,marginRight:30}} src='assets/img/logo.png' />
-                            <a className='nav-word active' href='#/'>
+                            <IndexLink className='nav-word' activeClassName='active' to='/'>
                                 首页
-                            </a>
+                            </IndexLink>
                             {t.getTitleBar()}
                         </div>
                         <div onClick={()=>this.refs.DropModal.show()} className='nav-guanzhu flex-v ai-center'>

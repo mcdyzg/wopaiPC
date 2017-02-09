@@ -97,6 +97,9 @@ class Home extends Component {
 
 		const temArr = [];
 		_.map(t.state.photographerList,function(item, index){
+			if(index > 2){
+				return
+			}
 			temArr.push(
 				<a key={index} href={'#/userdetail/'+item.id}>
 			<div key={index} className='hc-card2'>
@@ -132,6 +135,9 @@ class Home extends Component {
 		}
 		const temArr = [];
 		_.map(t.state.modelList,function(item, index){
+			if(index > 2){
+				return
+			}
 			temArr.push(
 				<a key={index} href={'#/userdetail/'+item.id}>
 			<div key={index} className='hc-card2'>

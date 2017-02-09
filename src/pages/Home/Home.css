@@ -111,9 +111,9 @@ html{
     /*line-height: 30px;*/
     /*line-height: 5.34vw;*/
     color:#333;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
 }
 .hb-date{
     font-size: 18px;

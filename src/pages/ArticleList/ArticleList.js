@@ -18,6 +18,10 @@ class ArticleList extends Component {
         this.loadMore = this.loadMore.bind(this);
 	}
 
+	// static contextTypes = {
+	//     router: React.PropTypes.object,
+	// };
+
 	componentWillReceiveProps(nextProps){
 		Action.getArticle(1,10,nextProps.params.type);
 	}
@@ -80,11 +84,7 @@ class ArticleList extends Component {
         return (
             <div className="home" style={{minHeight:$(window).height()+'px'}}>
 				<div className='home-content'>
-					<div className='biaoti-bar flex-h jc-space-between'>
-						<div className='bb-leftbtn'>
-							文章
-						</div>
-						
+					<div style={{padding:20}} >
 					</div>
 					<div className='flex-h jc-start' style={{flexWrap:'wrap',marginRight:-15}} >
 						{
